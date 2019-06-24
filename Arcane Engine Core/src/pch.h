@@ -11,6 +11,14 @@
 #include <array>
 #include <iterator>
 #include <fstream>
+#include <filesystem>
+
+// Check for the platform we are using
+#ifdef _WIN32
+#include <Windows.h>
+#elif (__linux__)
+#include <dlfcn.h>
+#endif
 
 #include <gl/glew.h>
 

@@ -6,9 +6,52 @@
 #include <ui/DebugPane.h>
 #include <ui/RuntimePane.h>
 #include <utils/Time.h>
+#include <vendor/renderdoc-1.x/renderdoc/api/app/renderdoc_app.h>
+
+// Get the Renderdoc api 
 
 int main() {
 	// Prepare the engine
+
+	// PS: Make sure your using the right bit version for your dlls
+	// For android replace librenderdoc.so with libVkLayer_GLES_RenderDoc.so
+	std::string dir = std::experimental::filesystem::current_path().string();
+	RENDERDOC_API_1_4_0* m_RenderdocApi = nullptr;
+	pRENDERDOC_GetAPI RENDERDOC_GetAPI;
+	void* mod = nullptr;
+
+#ifdef _WIN32
+	mod = LoadLibrary("renderdoc.dll");
+#elif (__Linux__)	
+	void* mod = dlopen("librenderdoc.so", RTLD_NOW | RTLD_NOLOAD);
+#endif
+
+	if (!mod)
+		return 0;
+
+#ifdef _WIN32
+	RENDERDOC_GetAPI = (pRENDERDOC_GetAPI)GetProcAddress((HMODULE)mod, "RENDERDOC_GetAPI");
+#elif (__linux__)	
+	RENDERDOC_GetAPI = (pRENDERDOC_GetAPI)dlsym(mod, "RENDERDOC_GetAPI");
+#endif
+	
+	int ret = RENDERDOC_GetAPI(eRENDERDOC_API_Version_1_4_0, (void**)&m_RenderdocApi);
+	assert(ret == 1);
+
+	m_RenderdocApi->SetLogFilePathTemplate((dir + "/logs/").c_str());
+
+	// To start a frame capture, call StartFrameCapture.
+	// You can specify NULL, NULL for the device to capture on if you have only one device and
+	// either no windows at all or only one window, and it will capture from that device.
+	// See the documentation below for a longer explanation
+	//if (m_RenderdocApi)
+	//	m_RenderdocApi->StartFrameCapture(NULL, NULL);
+
+
+	// Stop screen capture
+	//if (m_RenderdocApi)
+	//	m_RenderdocApi->EndFrameCapture(NULL, NULL);
+
 	arcane::Window window("Arcane Engine", WINDOW_X_RESOLUTION, WINDOW_Y_RESOLUTION);
 	arcane::TextureLoader::initializeDefaultTextures();
 	arcane::Scene3D scene(&window);
@@ -50,5 +93,6 @@ int main() {
 		// Window and input updating
 		window.update();
 	}
+	
 	return 0;
 }
