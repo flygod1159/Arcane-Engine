@@ -10,14 +10,17 @@
 #include <unordered_map>
 #include <array>
 #include <iterator>
-#include <fstream>
 #include <filesystem>
 
 // Check for the platform we are using
+#ifdef DEBUG
+#include <vendor/renderdoc-1.x/renderdoc/api/app/renderdoc_app.h>
+
 #ifdef _WIN32
 #include <Windows.h>
 #elif (__linux__)
 #include <dlfcn.h>
+#endif
 #endif
 
 #include <gl/glew.h>

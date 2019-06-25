@@ -6,9 +6,6 @@
 #include <ui/DebugPane.h>
 #include <ui/RuntimePane.h>
 #include <utils/Time.h>
-#include <vendor/renderdoc-1.x/renderdoc/api/app/renderdoc_app.h>
-
-// Get the Renderdoc api 
 
 int main() {
 	// Prepare the engine
