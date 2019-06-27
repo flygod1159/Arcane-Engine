@@ -10,6 +10,8 @@
 int main() {
 	// Prepare the engine
 
+	// Setup renderdoc api
+#ifdef _DEBUG
 	// PS: Make sure your using the right bit version for your dlls
 	// For android replace librenderdoc.so with libVkLayer_GLES_RenderDoc.so
 	std::string dir = std::experimental::filesystem::current_path().string();
@@ -36,6 +38,7 @@ int main() {
 	assert(ret == 1);
 
 	m_RenderdocApi->SetLogFilePathTemplate((dir + "/logs/").c_str());
+#endif
 
 	// To start a frame capture, call StartFrameCapture.
 	// You can specify NULL, NULL for the device to capture on if you have only one device and

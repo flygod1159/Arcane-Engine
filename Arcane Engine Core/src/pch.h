@@ -12,8 +12,8 @@
 #include <iterator>
 #include <filesystem>
 
-// Check for the platform we are using
-#ifdef DEBUG
+// Check for the platform we are using and whether we are in debug mode
+#ifdef _DEBUG
 #include <vendor/renderdoc-1.x/renderdoc/api/app/renderdoc_app.h>
 
 #ifdef _WIN32
