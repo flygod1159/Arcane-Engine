@@ -44,13 +44,16 @@ int main() {
 	// You can specify NULL, NULL for the device to capture on if you have only one device and
 	// either no windows at all or only one window, and it will capture from that device.
 	// See the documentation below for a longer explanation
+	//#ifdef _DEBUG
 	//if (m_RenderdocApi)
 	//	m_RenderdocApi->StartFrameCapture(NULL, NULL);
-
+	//#endif
 
 	// Stop screen capture
+	//#ifdef _DEBUG
 	//if (m_RenderdocApi)
 	//	m_RenderdocApi->EndFrameCapture(NULL, NULL);
+	//#endif
 
 	arcane::Window window("Arcane Engine", WINDOW_X_RESOLUTION, WINDOW_Y_RESOLUTION);
 	arcane::TextureLoader::initializeDefaultTextures();
