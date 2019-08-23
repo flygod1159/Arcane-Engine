@@ -9,7 +9,8 @@
 namespace arcane {
 
 	Scene3D::Scene3D(Window *window)
-		: m_SceneCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f), m_ModelRenderer(getCamera()), m_Terrain(glm::vec3(0.0f, -20.0f, 0.0f)), m_ProbeManager(m_SceneProbeBlendSetting)
+		: m_SceneCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f), m_ModelRenderer(getCamera()), m_Terrain(glm::vec3(0.0f, -20.0f, 0.0f)), m_ProbeManager(m_SceneProbeBlendSetting),
+		m_CollisionConfig(), m_CollisionDispatcher(&m_CollisionConfig), m_Broadphase(), m_Solver(), m_PhysicsSimulation(&m_CollisionDispatcher, &m_Broadphase, &m_Solver, &m_CollisionConfig)
 	{
 		m_GLCache = GLCache::getInstance();
 

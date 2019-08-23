@@ -1,5 +1,6 @@
 #pragma once
 
+#include <bullet/btBulletDynamicsCommon.h>
 #include <graphics/Skybox.h>
 #include <graphics/Window.h>
 #include <graphics/camera/FPSCamera.h>
@@ -50,6 +51,13 @@ namespace arcane {
 		DynamicLightManager m_DynamicLightManager;
 		ProbeManager m_ProbeManager;
 		std::vector<RenderableModel*> m_RenderableModels;
+
+		// Physics data
+		btDefaultCollisionConfiguration m_CollisionConfig;
+		btCollisionDispatcher m_CollisionDispatcher; // single-threaded dispatcher
+		btDbvtBroadphase m_Broadphase;
+		btSequentialImpulseConstraintSolver m_Solver; // single-threaded solver
+		btDiscreteDynamicsWorld m_PhysicsSimulation;
 	};
 
 }
