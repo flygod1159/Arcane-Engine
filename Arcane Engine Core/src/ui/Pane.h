@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vendor/imgui/imgui.h>
-
 namespace arcane {
 
 	class Pane {

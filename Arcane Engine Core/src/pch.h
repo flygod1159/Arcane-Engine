@@ -17,9 +17,12 @@
 
 #include <GLFW/glfw3.h>
 
-#include <stb_image_aug.h>
+#include <stb_image.h>
 
-#include <SOIL.h>
+#include <imgui.h>
+#include <vendor/imgui/imgui_impl_glfw_gl3.h>
+
+#include <SOIL2.h>
 
 #include <glm/glm.hpp>
 #include <glm/common.hpp>

@@ -1,8 +1,6 @@
 #pragma once
 
 #include <input/InputManager.h>
-#include <vendor/imgui/imgui.h>
-#include <vendor/imgui/imgui_impl_glfw_gl3.h>
 
 namespace arcane {
 
